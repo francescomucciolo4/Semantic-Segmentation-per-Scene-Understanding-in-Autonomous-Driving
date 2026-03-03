@@ -1,0 +1,36 @@
+======================================================================
+CAMVID SEMANTIC SEGMENTATION - TEST SET RESULTS
+======================================================================
+
+MODEL ARCHITECTURE
+----------------------------------------------------------------------
+Architecture: DeepLabV3+
+Encoder: ResNet50 (ImageNet pre-trained)
+Classes: 11
+Input size: 384×512
+
+OVERALL METRICS
+----------------------------------------------------------------------
+Mean IoU (mIoU): 69.23%
+Best class: Road (94.13%)
+Worst class: Pole (31.82%)
+
+PER-CLASS IoU
+----------------------------------------------------------------------
+Class           IoU (%)    Performance
+----------------------------------------------------------------------
+Sky               91.02   Excellent
+Building          82.18   Excellent
+Pole              31.82   Challenging
+Road              94.13   Excellent
+Pavement          80.94   Excellent
+Tree              77.88   Very Good
+SignSymbol        48.65   Challenging
+Fence             61.21   Good
+Vehicle           80.26   Excellent
+Pedestrian        50.44   Fair
+Bicyclist         62.99   Good
+
+======================================================================
+END OF REPORT
+======================================================================

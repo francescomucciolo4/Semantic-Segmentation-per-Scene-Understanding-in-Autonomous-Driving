@@ -20,9 +20,6 @@ logs/
 LabeledApproved_full/
 CamVid/
 CamVid_organized/ 
-*.png
-*.jpg
-*.jpeg
 
 # Maschere preprocessate
 *.npy

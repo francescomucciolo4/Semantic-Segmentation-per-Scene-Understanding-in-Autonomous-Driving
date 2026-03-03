@@ -16,7 +16,7 @@ runs/
 logs/
 
 # Dataset (troppo grande!)
-701_StillsRaw_full/
+701_StillsRaw_full/ 
 LabeledApproved_full/
 CamVid/
 CamVid_organized/ 

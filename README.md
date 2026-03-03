@@ -1,1 +1,0 @@
-# Semantic-Segmentation-per-Scene-Understanding-in-Autonomous-Driving

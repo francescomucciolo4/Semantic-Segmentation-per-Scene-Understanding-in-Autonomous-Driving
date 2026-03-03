@@ -19,7 +19,7 @@ logs/
 701_StillsRaw_full/
 LabeledApproved_full/
 CamVid/
-CamVid_organized/
+CamVid_organized/ 
 *.png
 *.jpg
 *.jpeg

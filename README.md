@@ -140,3 +140,8 @@ Per semplificare il problema, le 32 classi sono state accorpate in **11 macro-cl
 | Pedestrian  | 55.8% | Piccoli, occlusioni                 |
 | SignSymbol  | 49.6% | Rari + piccoli                      |
 | Pole        | 41.2% | Oggetti molto sottili               |
+
+
+## Nota
+
+> Questo repository ha finalità esclusivamente illustrative e di portfolio personale.

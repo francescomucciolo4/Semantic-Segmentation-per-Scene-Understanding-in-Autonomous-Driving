@@ -59,7 +59,7 @@ Per semplificare il problema, le 32 classi sono state accorpate in **11 macro-cl
 
 ### Decoder
 - Upsampling progressivo con skip connections  
-- Output: Logits `(B, 11, H, W)` → segmentazione pixel-wise  
+- Output: Logits `(B, 11, H, W)` segmentazione pixel-wise  
 
 **Parametri trainable:** 26M
 
@@ -89,7 +89,7 @@ Per semplificare il problema, le 32 classi sono state accorpate in **11 macro-cl
 - Epochs: 20 (early stopping su validation mIoU)  
 - Batch size: 8  
 - Hardware: **NVIDIA RTX 4060 (8GB VRAM)**  
-- Conversione maschere RGB → numpy offline  
+- Conversione maschere RGB-numpy offline  
 - Gestione pixel **Void (255)** tramite valid mask  
 - Normalizzazione ImageNet: `mean=[0.485, 0.456, 0.406]`, `std=[0.229, 0.224, 0.225]`
 
@@ -107,7 +107,7 @@ Per semplificare il problema, le 32 classi sono state accorpate in **11 macro-cl
 ## Tecnologie utilizzate
 - Python   
 - PyTorch 
-- segmentation-models-pytorch (architettura DeepLabV3+)  
+- segmentation-models-pytorch 
 - Albumentations
 - OpenCV   
 - NumPy & Pandas   

@@ -1,0 +1,148 @@
+# Semantic Segmentation per Scene Understanding in Autonomous Driving
+
+Sistema di segmentazione semantica pixel-wise utilizzando **DeepLabV3+** con encoder **ResNet50** pre-trained sul dataset **CamVid**.  
+Il progetto implementa tecniche avanzate per gestire severe **class imbalance** (ratio 55:1) tramite **Combined Loss Function** e class weighting.
+
+---
+
+## Dataset
+
+Il progetto utilizza il **CamVid (Cambridge-driving Labeled Video Database)**, un dataset standard per scene understanding in contesti di guida autonoma.
+
+- **Totale immagini:** 701  
+  - Training: 490 (70%)  
+  - Validation: 105 (15%)  
+  - Test: 106 (15%)  
+- **Risoluzione originale:** 960×720 pixel (resize a 384×512 per training)  
+
+Il dataset originale contiene 32 classi semantiche, ciascuna con un colore RGB specifico, più la classe **Void** per pixel non annotati o da ignorare.  
+Per semplificare il problema, le 32 classi sono state accorpate in **11 macro-classi semantiche**, più la classe **Void**, per ridurre la frammentazione e bilanciare le classi.
+
+**11 classi semantiche e percentuale di pixel:**
+
+- Sky: 15.85%  
+- Building: 24.22%  
+- Pole: 1.36%  
+- Road: 28.99%  
+- Pavement: 6.95%  
+- Tree: 11.20%  
+- SignSymbol: 0.71%  
+- Fence: 1.43%  
+- Car: 5.05%  
+- Pedestrian: 0.70%  
+- Bicyclist: 0.52%  
+
+>  Class imbalance: ratio 55:1 tra classe più frequente (**Road**) e più rara (**Bicyclist**).
+
+---
+
+## Architettura del Modello: DeepLabV3+ con ResNet50 Encoder
+
+### Input
+- Immagini RGB 384×512 normalizzate ImageNet
+
+### Encoder
+- **ResNet50 pre-trained** su ImageNet  
+- Estrae features multi-scala a diversi livelli di profondità  
+- Transfer learning per convergenza 3× più veloce
+
+### ASPP Module (Atrous Spatial Pyramid Pooling)
+- Cattura contesto multi-scala con dilatation rates `[6, 12, 18]`  
+- Cruciale per piccoli oggetti (Pole, SignSymbol)
+
+### Decoder
+- Upsampling progressivo con skip connections  
+- Output: Logits `(B, 11, H, W)` → segmentazione pixel-wise  
+
+**Parametri trainable:** 26M
+
+---
+
+## Metodologia
+
+### Gestione Class Imbalance
+
+1. **Combined Loss Function (50% Dice + 50% Focal)**  
+   - **Dice Loss:** ottimizza overlap tra predizioni e ground truth, robusta per imbalance  
+   - **Focal Loss:** down-weight esempi facili, focus su pixel difficili
+
+2. **Class Weights**  
+   - Pesi inversamente proporzionali alla frequenza delle classi  
+   - Applicati nella Focal Loss per amplificare errori su classi rare
+
+3. **Data Augmentation**  
+   - **Geometric:** `HorizontalFlip`, `Affine` (rotation ±15°, scale 0.8–1.2)  
+   - **Color:** `RandomBrightnessContrast`, `HueSaturationValue`, `RandomGamma`  
+   - **Noise:** `GaussianBlur`, `MotionBlur`, `GaussNoise`  
+   - **Other:** `RandomShadow`, `RandomCrop`
+
+### Training
+- Optimizer: **AdamW** (lr=3e-4, weight_decay=1e-4)  
+- Scheduler: **ReduceLROnPlateau** (patience=10, factor=0.5)  
+- Epochs: 20 (early stopping su validation mIoU)  
+- Batch size: 8  
+- Hardware: **NVIDIA RTX 4060 (8GB VRAM)**  
+- Conversione maschere RGB → numpy offline  
+- Gestione pixel **Void (255)** tramite valid mask  
+- Normalizzazione ImageNet: `mean=[0.485, 0.456, 0.406]`, `std=[0.229, 0.224, 0.225]`
+
+---
+
+## Metriche di Valutazione
+- **mIoU (mean Intersection over Union):** media su tutte le 11 classi  
+- **Pixel Accuracy:** percentuale di pixel classificati correttamente  
+- **Per-Class IoU:** IoU individuale per ogni classe  
+- **Confusion Matrix:** analisi errori tra classi  
+- **Training Curves:** evolution di loss e mIoU durante training  
+
+---
+
+## Tecnologie Utilizzate
+- Python 3.8+  
+- PyTorch 2.0+  
+- segmentation-models-pytorch (architettura DeepLabV3+)  
+- Albumentations (data augmentation)  
+- OpenCV (image processing)  
+- NumPy & Pandas (data manipulation)  
+- Matplotlib & Seaborn (visualization)  
+- TensorBoard (training monitoring)  
+- scikit-learn (metrics computation)  
+
+---
+
+## Risultati
+
+### Performance Quantitativa
+
+| Metrica           | Validation | Test        |
+|------------------|-----------|------------|
+| mIoU             | 73.9%     | 69.2%      |
+| Pixel Accuracy   | 91.9%     | 89.4%      |
+| Training Time    | -         | 45 min (RTX 4060) |
+| Inference Speed  | -         | ~42 FPS    |
+
+**Differenza Val-Test (-4.7%)**: normale per dataset nuovo, indica buona generalizzazione senza overfitting.
+
+---
+
+### Per-Class IoU (Test Set)
+
+| Classe       | IoU    | Note                                |
+|-------------|-------|------------------------------------|
+| Road        | 95.1% | Classe dominante, eccellente       |
+| Sky         | 91.1% | Regioni ampie, facile              |
+| Car         | 84.1% | Oggetti distintivi                  |
+| Building    | 84.0% | Texture riconoscibili               |
+| Pavement    | 80.9% | Buona separazione da Road           |
+| Tree        | 78.2% | Texture complessa ma gestita        |
+| Bicyclist   | 67.9% | Ottimo miglioramento               |
+| Fence       | 60.9% | Struttura sottile                   |
+| Pedestrian  | 55.8% | Piccoli, occlusioni                 |
+| SignSymbol  | 49.6% | Rari + piccoli                      |
+| Pole        | 41.2% | Oggetti molto sottili               |
+
+
+## Note
+
+> Questo repository ha finalità esclusivamente illustrative e di portfolio personale
+>  Parte del codice è stato generato utilizzando Claude 

@@ -1,5 +1,11 @@
 # Semantic Segmentation per Scene Understanding in Autonomous Driving
 
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/f732d2a8-a0b5-49a5-b581-096af76bc927" width="700">
+</p>
+
+
 Sistema di segmentazione semantica pixel-wise utilizzando **DeepLabV3+** con encoder **ResNet50** pre-trained sul dataset **CamVid**.  
 Il progetto implementa tecniche avanzate per gestire severe **class imbalance** (ratio 55:1) tramite **Combined Loss Function** e class weighting.
 

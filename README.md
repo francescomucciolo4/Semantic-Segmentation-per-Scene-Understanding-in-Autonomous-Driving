@@ -125,10 +125,8 @@ Per semplificare il problema, le 32 classi sono state accorpate in **11 macro-cl
 |------------------|-----------|------------|
 | mIoU             | 73.9%     | 69.2%      |
 | Pixel Accuracy   | 91.9%     | 89.4%      |
-| Training Time    | -         | 45 min (RTX 4060) |
+| Training Time    | -         | 45 min  |
 | Inference Speed  | -         | ~42 FPS    |
-
-**Differenza Val-Test (-4.7%)**: normale per dataset nuovo, indica buona generalizzazione senza overfitting.
 
 ---
 

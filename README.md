@@ -23,7 +23,7 @@ Il progetto utilizza il **CamVid (Cambridge-driving Labeled Video Database)**, u
 - **Risoluzione originale:** 960×720 pixel (resize a 384×512 per training)  
 
 Il dataset originale contiene 32 classi, ciascuna con un colore RGB specifico, più la classe **Void** per pixel non annotati o da ignorare.  
-Per semplificare il problema, le 32 classi sono state accorpate in **11 macro-classi semantiche**, più la classe **Void**, per ridurre la frammentazione e bilanciare le classi.
+Per semplificare il problema, le 32 classi sono state accorpate in **11 macro-classi semantiche**, più la classe **Void** che contiene classi con pochi pixel o UNKNOWN.
 
 **11 classi semantiche e percentuale di pixel:**
 

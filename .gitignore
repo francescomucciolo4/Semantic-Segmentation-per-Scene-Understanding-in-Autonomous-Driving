@@ -21,6 +21,9 @@ LabeledApproved_full/
 CamVid/
 CamVid_organized/ 
 
+# Video
+*.mp4
+
 # Maschere preprocessate
 *.npy
 

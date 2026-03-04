@@ -11,7 +11,8 @@ from tqdm import tqdm
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
 import segmentation_models_pytorch as smp
-import time
+import time 
+
 
 # ============================================================================
 # CONFIGURAZIONE

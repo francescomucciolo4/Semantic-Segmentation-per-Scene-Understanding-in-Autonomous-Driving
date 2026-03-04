@@ -145,4 +145,4 @@ Per semplificare il problema, le 32 classi sono state accorpate in **11 macro-cl
 ## Note
 
 > Questo repository ha finalità esclusivamente illustrative e di portfolio personale
->  Parte del codice è stato generato utilizzando Claude 
+> Parte del codice è stato generato utilizzando Claude 

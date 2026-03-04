@@ -7,7 +7,8 @@
 
 
 Sistema di segmentazione semantica pixel-wise utilizzando **DeepLabV3+** con encoder **ResNet50** pre-trained sul dataset **CamVid**.  
-Il progetto implementa tecniche avanzate per gestire severe **class imbalance** (ratio 55:1) tramite **Combined Loss Function** e class weighting.
+Il progetto gestisce **class imbalance** (ratio 55:1) tramite **Combined Loss Function** e class weighting.
+Il modello viene tetsato su un test set ricavato dal dataset **CamVid**, mentre il video è solo una dimostrazione in tempo reale dei risultati.
 
 ---
 
@@ -21,7 +22,7 @@ Il progetto utilizza il **CamVid (Cambridge-driving Labeled Video Database)**, u
   - Test: 106 (15%)  
 - **Risoluzione originale:** 960×720 pixel (resize a 384×512 per training)  
 
-Il dataset originale contiene 32 classi semantiche, ciascuna con un colore RGB specifico, più la classe **Void** per pixel non annotati o da ignorare.  
+Il dataset originale contiene 32 classi, ciascuna con un colore RGB specifico, più la classe **Void** per pixel non annotati o da ignorare.  
 Per semplificare il problema, le 32 classi sono state accorpate in **11 macro-classi semantiche**, più la classe **Void**, per ridurre la frammentazione e bilanciare le classi.
 
 **11 classi semantiche e percentuale di pixel:**
@@ -94,7 +95,7 @@ Per semplificare il problema, le 32 classi sono state accorpate in **11 macro-cl
 
 ---
 
-## Metriche di Valutazione
+## Metriche di valutazione
 - **mIoU (mean Intersection over Union):** media su tutte le 11 classi  
 - **Pixel Accuracy:** percentuale di pixel classificati correttamente  
 - **Per-Class IoU:** IoU individuale per ogni classe  
@@ -103,22 +104,22 @@ Per semplificare il problema, le 32 classi sono state accorpate in **11 macro-cl
 
 ---
 
-## Tecnologie Utilizzate
-- Python 3.8+  
-- PyTorch 2.0+  
+## Tecnologie utilizzate
+- Python   
+- PyTorch 
 - segmentation-models-pytorch (architettura DeepLabV3+)  
-- Albumentations (data augmentation)  
-- OpenCV (image processing)  
-- NumPy & Pandas (data manipulation)  
-- Matplotlib & Seaborn (visualization)  
-- TensorBoard (training monitoring)  
-- scikit-learn (metrics computation)  
+- Albumentations
+- OpenCV   
+- NumPy & Pandas   
+- Matplotlib & Seaborn  
+- TensorBoard   
+- scikit-learn  
 
 ---
 
 ## Risultati
 
-### Performance Quantitativa
+### Performance quantitativa
 
 | Metrica           | Validation | Test        |
 |------------------|-----------|------------|
@@ -148,7 +149,10 @@ Per semplificare il problema, le 32 classi sono state accorpate in **11 macro-cl
 | Pole        | 41.2% | Oggetti molto sottili               |
 
 
+
+
 ## Note
 
-> Questo repository ha finalità esclusivamente illustrative e di portfolio personale
-> Parte del codice è stato generato utilizzando Claude 
+> Questo repository ha finalità esclusivamente illustrative e di portfolio personale.
+>
+> Parte del codice è stato generato utilizzando Claude.

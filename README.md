@@ -8,7 +8,7 @@
 
 Sistema di segmentazione semantica pixel-wise utilizzando **DeepLabV3+** con encoder **ResNet50** pre-trained sul dataset **CamVid**.  
 Il progetto gestisce **class imbalance** (ratio 55:1) tramite **Combined Loss Function** e class weighting.
-Il modello viene testato su un test set ricavato dal dataset **CamVid**, mentre il video è solo una dimostrazione in tempo reale dei risultati.
+Il modello viene testato su un test set ricavato dal dataset **CamVid**; nel video è presente una dimostrazione in tempo reale dei risultati.
 
 ---
 

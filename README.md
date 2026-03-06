@@ -136,7 +136,7 @@ Per semplificare il problema, le 32 classi sono state accorpate in **11 macro-cl
 |-------------|-------|------------------------------------|
 | Road        | 95.1% | Classe dominante, eccellente       |
 | Sky         | 91.1% | Regioni ampie, facile              |
-| Car         | 84.1% | Oggetti distintivi                  |
+| Vehicle         | 84.1% | Oggetti distintivi                  |
 | Building    | 84.0% | Texture riconoscibili               |
 | Pavement    | 80.9% | Buona separazione da Road           |
 | Tree        | 78.2% | Texture complessa ma gestita        |

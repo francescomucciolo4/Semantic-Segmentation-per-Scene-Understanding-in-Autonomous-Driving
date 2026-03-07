@@ -35,7 +35,7 @@ Per semplificare il problema, le 32 classi sono state accorpate in **11 macro-cl
 - Tree: 11.20%  
 - SignSymbol: 0.71%  
 - Fence: 1.43%  
-- Car: 5.05%  
+- Vehicle: 5.05%  
 - Pedestrian: 0.70%  
 - Bicyclist: 0.52%  
 

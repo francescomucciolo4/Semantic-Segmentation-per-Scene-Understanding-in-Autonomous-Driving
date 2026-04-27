@@ -113,7 +113,6 @@ Per semplificare il problema, le 32 classi sono state accorpate in **11 macro-cl
 - NumPy & Pandas   
 - Matplotlib & Seaborn  
 - TensorBoard   
-- scikit-learn  
 
 ---
 

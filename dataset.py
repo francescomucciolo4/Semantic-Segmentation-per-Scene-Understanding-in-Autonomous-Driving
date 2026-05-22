@@ -91,7 +91,6 @@ class CamVidDataset(Dataset):
         mask_path = self.masks[idx]
         
         if self.use_preprocessed:
-            # Carica .npy (VELOCISSIMO!)
             mask = np.load(mask_path)
         else:
             # Vecchio metodo (lento)

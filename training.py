@@ -38,7 +38,7 @@ LAST_MODEL_PATH = CHECKPOINT_DIR / 'last_model.pth'
 
 CLASS_NAMES = [
     'Sky', 'Building', 'Pole', 'Road', 'Pavement',
-    'Tree', 'SignSymbol', 'Fence', 'Car', 'Pedestrian', 'Bicyclist'
+    'Tree', 'SignSymbol', 'Fence', 'Vehicle', 'Pedestrian', 'Bicyclist'
 ]
 
 # ============================================================================
